@@ -1,0 +1,202 @@
+{
+    "key": "group_67483bb225b5c",
+    "title": "Block: Accordion Component",
+    "fields": [
+        {
+            "key": "field_67483bb2e4bc5",
+            "label": "Theme",
+            "name": "acc_theme",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "blue-bg": "Blue Background",
+                "white-bg": "White Background"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 1,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_6749fd02b4499",
+            "label": "Component Title",
+            "name": "acc_component_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6749fd0eb449a",
+            "label": "Add Accordion Tabs",
+            "name": "acc_add_accordion_tabs",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Accordion Tab",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_6749fd28b449b",
+                    "label": "Accordion Tab Title",
+                    "name": "acc_accordion_tab_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "This title will display on the tab on the left side of the component and above the accordion items when the tab is selected.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_6749fd0eb449a"
+                },
+                {
+                    "key": "field_6749fd39b449c",
+                    "label": "Add Tabs",
+                    "name": "acc_add_tabs",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "table",
+                    "min": 2,
+                    "max": 0,
+                    "collapsed": "",
+                    "button_label": "Add Tab",
+                    "rows_per_page": 20,
+                    "parent_repeater": "field_6749fd0eb449a",
+                    "sub_fields": [
+                        {
+                            "key": "field_6749fe2eb449d",
+                            "label": "Tab Title",
+                            "name": "acc_tab_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_6749fd39b449c"
+                        },
+                        {
+                            "key": "field_6749fe72b449e",
+                            "label": "Tab Description",
+                            "name": "acc_tab_description",
+                            "aria-label": "",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "allow_in_bindings": 0,
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0,
+                            "parent_repeater": "field_6749fd39b449c"
+                        },
+                        {
+                            "key": "field_6749fe90b449f",
+                            "label": "Tab CTA",
+                            "name": "acc_tab_cta",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "allow_in_bindings": 0,
+                            "parent_repeater": "field_6749fd39b449c"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/accordion-component"
+            }
+        ]
+    ],
+    "menu_order": -1,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1736426557
+}

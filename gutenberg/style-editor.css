@@ -1,0 +1,99 @@
+/* input[type="radio"]:checked::before {
+    margin-top: 4px;
+    margin-left: 4px;
+} */
+
+.wp-block {
+    max-width: 90%;
+    padding-top: 20px;
+}
+
+.acf-range-wrap input[type=number] {
+    min-width: 75px;
+}
+
+div[data-type^="acf/"][data-title]::before {
+    content: 'Block Name: 'attr(data-title);
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-align: center;
+    color: #444;
+}
+
+.wp-block-spacer {
+    background-color: rgba(128, 128, 128, 0.2);
+}
+
+.edit-post-meta-boxes-area {
+    max-width: 89%;
+    margin: 0 auto !important;
+}
+
+.postbox {
+    border-left: 1px solid #ccc !important;
+    border-right: 1px solid #ccc !important;
+    border-bottom: 1px solid #ccc !important;
+    margin-bottom: 30px !important;
+}
+
+.postbox-header {
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+.acf-block-component .acf-input {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.acf-block-component .acf-input .description {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* .acf-repeater .wp-core-ui .button-primary.focus,
+.acf-repeater .wp-core-ui .button-primary:focus {
+    color:#fff !important;
+} */
+
+.acf-block-body .acf-button:focus,
+.acf-block-body .acf-link a.button:focus {
+    color: #fff !important;
+}
+
+.acf-button-group label {
+    flex: none;
+}
+
+.collapse-button-container {
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.edit-post-layout__metaboxes {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.editor-styles-wrapper .edit-post-meta-boxes-area {
+    max-width: 90%;
+}
+
+/* Hide some flexible components */
+/* .post-php:not(.post-slug-post) .acf-tooltip.acf-fc-popup li:has([data-layout="post_series_promo"]), */
+.post-php:not(.post-slug-post) .acf-tooltip.acf-fc-popup li:has([data-layout="post_series_promo"],[data-layout="post_section_label"]) {
+    display: none;
+}
+
+.components-panel__body {
+    margin-bottom: 20px;
+}
+
+.ant-message, .ant-popover, .ant-dropdown, .ant-dropdown-menu-submenu-popup, .ant-modal-mask, .ant-modal-wrap{
+    z-index: 99 !important;
+}

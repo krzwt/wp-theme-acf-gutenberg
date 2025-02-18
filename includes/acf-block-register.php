@@ -57,21 +57,6 @@ function block_acf_init() {
     // Define blocks
     $blocks = array(
 
-        // 2 Column WYSIWYG
-        array(
-            'name'              => 'two_column_wysiwyg_component',
-            'title'             => __( '2 Column WYSIWYG', 'cbiz-wp'),
-            'render_template'   => get_theme_file_path('/template-part/blocks/two-column-wysiwyg-component.php'),
-            'category'          => 'custom-blocks',
-            'keywords'          => array('2 Column WYSIWYG', 'Column', 'WYSIWYG' ),
-            'icon'              => 'welcome-add-page',
-            'mode'              => 'edit',
-            'example'           => array(
-                'attributes' => array(
-                    'mode' => 'preview', // Ensure the mode is set to preview
-                ),
-            ),
-        ),
         // Listing Hero with Carousel
         array(
             'name'              => 'listing_hero_with_carousel',
@@ -87,7 +72,7 @@ function block_acf_init() {
                 ),
             ),
             'enqueue_assets' => function() use ( $theme_version, $separate_folder ){ // Used corrected variable
-                wp_enqueue_script( 'listing-hero-with-carousel',  $separate_folder . 'listing-hero-with-carousel.js', array('jquery'), $theme_version, true );
+                // wp_enqueue_script( 'listing-hero-with-carousel',  $separate_folder . 'listing-hero-with-carousel.js', array('jquery'), $theme_version, true );
             },
         ),
 

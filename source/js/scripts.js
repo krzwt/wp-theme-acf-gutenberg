@@ -1,5 +1,5 @@
 var $ = jQuery.noConflict();
-$headerHeight = $('.main-header').outerHeight();
+var $headerHeight = $('.main-header').outerHeight();
 
 /* Script on ready
 ------------------------------------------------------------------------------*/
@@ -38,8 +38,8 @@ function sameHeight(elem, heightType) {
 	}
 	mhelem.css(heightType, 'auto');
 	mhelem.each(function () {
-		if ($(this).height() > maxHeight) {
-			maxHeight = $(this).height();
+		if ($(this).outerHeight() > maxHeight) {
+			maxHeight = $(this).outerHeight();
 		}
 	});
 	mhelem.css(heightType, maxHeight);

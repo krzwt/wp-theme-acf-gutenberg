@@ -228,3 +228,29 @@ function admin_logo_style() {
 	}
 }
 add_action('admin_enqueue_scripts', 'admin_logo_style');
+
+// Remove unwanted assets
+function remove_unwanted_assets() {
+    // Define an array of unwanted script handles
+    $scripts_to_remove = array(
+        // 'powertip',
+        // 'maps-points',
+    );
+
+    // Dequeue scripts
+    foreach ($scripts_to_remove as $script) {
+        wp_dequeue_script($script);
+    }
+
+    // Define an array of unwanted style handles
+    $styles_to_remove = array(
+        // 'powertip',
+        // 'maps-points',
+    );
+
+    // Dequeue styles
+    foreach ($styles_to_remove as $style) {
+        wp_dequeue_style($style);
+    }
+}
+// add_action('wp_enqueue_scripts', 'remove_unwanted_assets');

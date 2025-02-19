@@ -22,9 +22,9 @@ if ( !defined( 'ABSPATH' ) || !function_exists( 'add_filter' ) ) {
 </head>
 <body <?php body_class() ?>>
 	<?php
-	echo '<!-- start -->
+	echo '<!-- Start -->
 	<div class="wrapper">
-		<!-- device menu -->
+		<!-- Device menu -->
         <div class="mbnav d-md-none">
             <div class="mbnav__backdrop"></div>
             <div class="mbnav__state" data-clickable="true">
@@ -63,9 +63,7 @@ if ( !defined( 'ABSPATH' ) || !function_exists( 'add_filter' ) ) {
             //                     </form>
             //                 </div>
             //             </div>';
-            echo'<!-- hamburger -->
-            <a href="javascript:;" class="hamburger">
-                    <span></span>
-                </a>
+            echo'<!-- Hamburger -->
+            <a href="javascript:;" class="hamburger" role="button" aria-label="Hamburger"><span></span></a>
             </div>
         </header>';

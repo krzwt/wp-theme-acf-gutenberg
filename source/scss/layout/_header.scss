@@ -9,11 +9,7 @@
 	.brand {
 		display: inline-flex;
 		vertical-align: middle;
-		width: rem(200px);
-
-		@include respond-below(md) {
-			width: rem(100px);
-		}
+		width: rem(100px);
 	}
 
 	/* nav */

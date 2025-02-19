@@ -10,7 +10,7 @@ if ( !defined( 'ABSPATH' ) || !function_exists( 'add_filter' ) ) {
 }
 
 get_header();
-echo '<!-- content area part -->
+echo '<!-- Content area part -->
 <main class="main-content py-30">
 <div class="container">
     <h1>48px H1 heading</h1>

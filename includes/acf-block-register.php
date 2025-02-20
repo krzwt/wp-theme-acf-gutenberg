@@ -57,24 +57,24 @@ function block_acf_init() {
     // Define blocks
     $blocks = array(
 
-        // Listing Hero with Carousel
-        // array(
-        //     'name'              => 'listing_hero_with_carousel',
-        //     'title'             => __( 'Listing Hero with Carousel', 'cbiz-wp'),
-        //     'render_template'   => get_theme_file_path('/template-part/blocks/listing-hero-with-carousel.php'),
-        //     'category'          => 'custom-blocks',
-        //     'keywords'          => array('Listing Hero with Carousel', 'Listing Hero with Carousel'),
-        //     'icon'              => 'welcome-add-page',
-        //     'mode'              => 'edit',
-        //     'example'           => array(
-        //         'attributes' => array(
-        //             'mode' => 'preview', // Ensure the mode is set to preview
-        //         ),
-        //     ),
-        //     'enqueue_assets' => function() use ( $theme_version, $separate_folder ){ // Used corrected variable
-        //         // wp_enqueue_script( 'listing-hero-with-carousel',  $separate_folder . 'listing-hero-with-carousel.js', array('jquery'), $theme_version, true );
-        //     },
-        // ),
+        // WYSIWYG
+        array(
+            'name'              => 'wysiwyg',
+            'title'             => __( 'WYSIWYG', 'custom-wp'),
+            'render_template'   => get_theme_file_path('/template-part/blocks/wysiwyg.php'),
+            'category'          => 'custom-blocks',
+            'keywords'          => array('wysiwyg', 'content'),
+            'icon'              => 'welcome-add-page',
+            'mode'              => 'edit',
+            'example'           => array(
+                'attributes' => array(
+                    'mode' => 'preview', // Ensure the mode is set to preview
+                ),
+            ),
+            'enqueue_assets' => function() use ( $theme_version, $separate_folder ){ // Used corrected variable
+                // wp_enqueue_script( 'wysiwyg',  $separate_folder . 'wysiwyg.js', array('jquery'), $theme_version, true );
+            },
+        ),
 
     );
 

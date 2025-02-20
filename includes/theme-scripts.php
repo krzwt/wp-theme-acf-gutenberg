@@ -22,8 +22,7 @@ function action__front_script() {
     wp_enqueue_style( THEME_PREFIX . '-wp-style' );
     wp_register_style( THEME_PREFIX . '-style', get_template_directory_uri() . '/assets/css/style.min.css', array(), $theme_version );
     wp_enqueue_style( THEME_PREFIX . '-style' );
-    // wp_enqueue_script( THEME_PREFIX . '-player-js', 'https://player.vimeo.com/api/player.js', array('jquery'), '1.0.0', true );
-    // wp_enqueue_script( THEME_PREFIX . '-iframe-api-js', 'https://www.youtube.com/iframe_api', array('jquery'), '6.0.2', true );
+
     if (file_exists(get_stylesheet_directory() . '/assets/js/scripts.js') && is_admin()){
         wp_register_script( THEME_PREFIX . '-scripts-jquery', get_template_directory_uri() . '/assets/js/scripts.js', array( 'jquery' ), $theme_version, true );
     }else{

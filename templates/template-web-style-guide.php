@@ -26,8 +26,43 @@ echo '<!-- Content area part -->
         <div class="cell-12 p-small py-30">
             <p><a href="#">Lorem ipsum dolor sit amet,</a> consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
         </div>
-         <div class="cell-12 p-large">
+        <div class="cell-12 p-large">
             <p><a href="#">Lorem ipsum dolor sit amet,</a> consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </div>
+        <hr>
+        <div class="cell-12">
+            <h4>Default check style</h4>
+            <ul>
+                <li>Mauris quis justo at tellu4 faucibus suscipit non ut leo. Donec ullamcorper nisi mi, ac mattis leo convallis ut Quisque vel ipsum massa. Mauris quis justo at tellus faucibus. 
+                </li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel ipsum massa. Mauris quis justo at tellus faucibus suscipit non ut leo. Donec ullamcorper nisi mi, ac mattis leo convallis ut.
+                    <ul>
+                        <li>Quisque vel ipsum massa. Mauris quis justo at tellus faucibus suscipit non ut leo.</li>
+                        <li>Donec ullamcorper nisi mi, ac mattis leo convallis ut. Lorem ipsum dolor sit amet.</li>
+                    </ul>
+                    <ol>
+                        <li>Quisque vel ipsum massa. Mauris quis justo at tellus faucibus suscipit non ut leo.</li>
+                        <li>Donec ullamcorper nisi mi, ac mattis leo convallis ut. Lorem ipsum dolor sit amet.</li>
+                    </ol>
+                </li>
+                <li>This may still come in handy in some situations.</li>
+            </ul>
+            <br>
+            <ol>
+                <li>Mauris quis justo at tellus faucibus suscipit non ut leo. Donec ullamcorper nisi mi, ac mattis leo convallis ut Quisque vel ipsum massa. Mauris quis justo at tellus faucibus. 
+                </li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel ipsum massa. Mauris quis justo at tellus faucibus suscipit non ut leo. Donec ullamcorper nisi mi, ac mattis leo convallis ut.
+                    <ol>
+                        <li>Quisque vel ipsum massa. Mauris quis justo at tellus faucibus suscipit non ut leo.</li>
+                        <li>Donec ullamcorper nisi mi, ac mattis leo convallis ut. Lorem ipsum dolor sit amet.</li>
+                    </ol>
+                    <ul>
+                        <li>Quisque vel ipsum massa. Mauris quis justo at tellus faucibus suscipit non ut leo.</li>
+                        <li>Donec ullamcorper nisi mi, ac mattis leo convallis ut. Lorem ipsum dolor sit amet.</li>
+                    </ul>
+                </li>
+                <li>This may still come in handy in some situations.</li>
+            </ol>
         </div>
         <div class="cell-12 bullet-styled">
             <br>

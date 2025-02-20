@@ -53,21 +53,69 @@ function acf_link ( $link, $link_class = '' ) {
 /* </ACF Link> */
 
 /* <ACF Image> */
-function acf_img ( $img, $img_class = '', $loading = 'lazy' ) {
+function acf_img( $img, $img_class = '', $loading = 'lazy' ) {
+	// Check if the image is valid
 	if( $img ):
-		$img_url = $img['url'];
-		$img_alt = $img['alt'] ? $img['alt'] : $img['title'];
-		$img_class = $img_class ? $img_class : '';
-		$img_width =  $img['width'] != 1 ? ' width="'. $img['width'].'"' : '';
-		$img_height =  $img['height'] != 1 ?  ' height="'.$img['height'].'"' : '';
-		$loading = $loading ? ' loading="'.esc_attr($loading).'"' : '';
 
-		return '<img class="'.$img_class.'" src="'.esc_url( $img_url ).'" alt="'.esc_attr( $img_alt ).'"'. $img_width . $img_height . $loading .'>';
+		// Prepare image attributes
+		$img_url = isset($img['url']) ? esc_url( $img['url'] ) : '';
+		$img_alt = isset($img['alt']) && !empty($img['alt']) ? esc_attr($img['alt']) : esc_attr($img['title']);
+		$img_class = !empty($img_class) ? esc_attr($img_class) : '';
+		$img_width = isset($img['width']) && $img['width'] > 1 ? ' width="'. intval($img['width']).'"' : '';
+		$img_height = isset($img['height']) && $img['height'] > 1 ? ' height="'. intval($img['height']).'"' : '';
+		$loading = !empty($loading) ? ' loading="'.esc_attr($loading).'"' : '';
+
+		// Return the final image HTML
+		return '<img class="'.$img_class.'" src="'.$img_url.'" alt="'.$img_alt.'"'. $img_width . $img_height . $loading .'>';
 	endif;
-	// echo acf_img($img, 'custom-class', 'eager'); // Adds eager loading
-	// echo acf_img($img, 'custom-class'); // Defaults to lazy loading
+
+	// Return an empty string if no image is provided
+	return '';
+	// USE
+	// echo acf_img($image, 'my-image-class', 'lazy');
 }
 /* </ACF Image> */
+
+/* <ACF Picture> */
+function acf_picture( $images = [], $img_class = '', $loading = 'lazy' ) {
+	// Extract desktop and mobile images from the array
+	$imgDesktop = isset( $images[0] ) ? $images[0] : null;
+	$imgMobile = isset( $images[1] ) ? $images[1] : null;
+
+	if( $imgDesktop ):
+		$img_url = $imgDesktop['url'];
+		$img_alt = $imgDesktop['alt'] ? $imgDesktop['alt'] : $imgDesktop['title'];
+		$img_class = $img_class ? $img_class : '';
+		$img_width =  $imgDesktop['width'] != 1 ? ' width="'. $imgDesktop['width'].'"' : '';
+		$img_height =  $imgDesktop['height'] != 1 ?  ' height="'.$imgDesktop['height'].'"' : '';
+		$loading = $loading ? ' loading="'.esc_attr($loading).'"' : '';
+
+		// Mobile image URL (if provided)
+		$imgMobileUrl = $imgMobile ? esc_url( $imgMobile['url'] ) : '';
+
+		// Build the picture tag
+		$output = '<picture>';
+
+		// If mobile image exists, set as default for screens below 768px
+		if( $imgMobileUrl ) {
+			$output .= '<source media="(max-width: 767px)" srcset="'. $imgMobileUrl .'">';
+		}
+
+		// Desktop image for screens 768px and above
+		$output .= '<source media="(min-width: 768px)" srcset="'. esc_url($img_url) .'">';
+
+		// Fallback img tag for older browsers
+		$output .= '<img class="'.$img_class.'" src="'.esc_url( $img_url ).'" alt="'.esc_attr( $img_alt ).'"'. $img_width . $img_height . $loading .'>';
+
+		$output .= '</picture>';
+
+		return $output;
+	endif;
+
+	return ''; // Return an empty string if no $imgDesktop is provided
+	// Use acf_picture([$imgDesktop, $imgMobile], $img_class, $loading);
+}
+/* </ACF Picture> */
 
 /* Youtube ID get */
 function YouTube_ID($link){

@@ -14,7 +14,6 @@ $description         = get_field( 'description', 'options' );
 $suggested_heading 	 = get_field( 'suggested_heading', 'options' );
 $add_suggested_card  = get_field( 'add_suggested_card', 'options' );
 
-
 echo '<main class="main-content">
 	<section class="error-404">
 		<div class="container">';
@@ -23,27 +22,27 @@ echo '<main class="main-content">
 					echo '<h1>'.$title.'</h1>';
 				}else{
 					echo'<h1 class="page-title">';
-						echo '<span>'. __( 'Oops! That page can&rsquo;t be found.','noblis-wp') .'</span>';
+						echo '<span>'. __( 'Oops! That page can&rsquo;t be found.','custom-wp') .'</span>';
 					echo '</h1>';
 				}
 				if( $description ){
 					echo '<div class="description p-large">'.$description.'</div>';
 				}else{
 					echo '<div class="description">';
-						echo '<p>'.__('The Page You Requested Cannot Be Found. The Page You Are Looking For Might Have Been Removed, Had Its Name Changed, Or Is Temporarily Unavailable.','noblis-wp').'</p>';
+						echo '<p>'.__('The Page You Requested Cannot Be Found. The Page You Are Looking For Might Have Been Removed, Had Its Name Changed, Or Is Temporarily Unavailable.','custom-wp').'</p>';
 						echo'</br>';
-						echo '<h5>'.__('Please try the following:','noblis-wp').'</h5>';
+						echo '<h5>'.__('Please try the following:','custom-wp').'</h5>';
 						echo '<ul>';
-							echo '<li>'.__('If you typed the page address in the Address bar, make sure that it is spelled correctly.','noblis-wp').'</li>';
-							echo '<li>'.__('Open the ','noblis-wp').'<a href="'.get_home_url().'">'.__('Home Page</a> and look for links to the information you want.','noblis-wp').'</li>';
-							echo '<li>'.__('Use the navigation bar on the left or top to find the link you are looking for.','noblis-wp').'</li>
+							echo '<li>'.__('If you typed the page address in the Address bar, make sure that it is spelled correctly.','custom-wp').'</li>';
+							echo '<li>'.__('Open the ','custom-wp').'<a href="'.get_home_url().'">'.__('Home Page</a> and look for links to the information you want.','custom-wp').'</li>';
+							echo '<li>'.__('Use the navigation bar on the left or top to find the link you are looking for.','custom-wp').'</li>
 						</ul>';
-						echo '<a href="'.get_home_url().'" class="btn mt-15">'.__('Back To Home','noblis-wp').'</a>';
+						echo '<a href="'.get_home_url().'" class="btn mt-15">'.__('Back To Home','custom-wp').'</a>';
 					echo '</div>';
 				}
 				echo '<form class="error-search-wrap" action="'.home_url( '/' ).'" >';
 					echo '<div class="error-search-field">
-						<input type="search" name="s" id="header_search_input" placeholder="'.__('Search', 'noblis-wp').'">
+						<input type="search" name="s" id="header_search_input" placeholder="'.__('Search', 'custom-wp').'">
 						<button class="icon-search" type="submit"></button>
 					</div>
 				</form>

@@ -13,7 +13,7 @@ if ( !defined( 'ABSPATH' ) || !function_exists( 'add_filter' ) ) {
 <html <?php language_attributes() ?> class="no-js">
 <head>
 	<meta charset="<?php bloginfo( 'charset' ) ?>" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
     <!-- <meta name="theme-color" content="#7b0a2e"/> -->
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ) ?>" />
@@ -37,7 +37,7 @@ if ( !defined( 'ABSPATH' ) || !function_exists( 'add_filter' ) ) {
             </div>
         </div>';
         $brand_logo = get_field( 'brand_logo','option' );
-        echo'<header class="main-header py-30">
+        echo'<header class="main-header">
             <div class="container d-flex justify-content-between align-items-center">';
             if($brand_logo){
                 echo'<a href="'.home_url( '/' ).'" class="brand">

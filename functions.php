@@ -12,7 +12,7 @@ if ( !defined( 'ABSPATH' ) ) {
 /**
  * Define contant.
  */
-define( 'THEME_PREFIX', 'noblis-wp' );
+define( 'THEME_PREFIX', 'custom-wp' );
 
 define( 'DUMMY_IMAGE_URL', get_stylesheet_directory_uri().'/assets/images/thumbnail-image.png' );
 define( 'DUMMY_IMAGE_ALT', 'Default Thumbnail Image' );
@@ -22,9 +22,9 @@ define( 'DUMMY_IMAGE_ALT', 'Default Thumbnail Image' );
  * @var array
  */
 register_nav_menus( array(
-	'main-menu' => __( 'Main Menu', 'noblis-wp' ),
-	'footer-menu' =>  __( 'Footer Menu', 'noblis-wp' ),
-	'privacy-menu' =>  __( 'Privacy Menu', 'noblis-wp' ),
+	'main-menu' => __( 'Main Menu', 'custom-wp' ),
+	'footer-menu' =>  __( 'Footer Menu', 'custom-wp' ),
+	'privacy-menu' =>  __( 'Privacy Menu', 'custom-wp' ),
 ) );
 
 /**

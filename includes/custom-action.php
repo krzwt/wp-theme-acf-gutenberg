@@ -213,19 +213,25 @@ function register_my_custom_menu_page() {
  * Admin menu logo
 */
 function admin_logo_style() {
-	$dash_logo = get_field ( "brand_logo","option");
-	if ( !empty( $dash_logo ) ) {
-		echo '<style>
-			#toplevel_page_logo_based_menu {
-				background: url('.$dash_logo['url'].') no-repeat center/contain;
-				margin:10px 0 !important;
-                pointer-events:none;
-			}
-			#toplevel_page_logo_based_menu > a,
-            #toplevel_page_logo_based_menu > a > div.wp-menu-image,
-            #toplevel_page_logo_based_menu .wp-menu-name {display: none;}
-		</style>';
-	}
+    // Check if the ACF function exists before using it
+    if (function_exists('get_field')) {
+        $dash_logo = get_field("footer_logo", "option");
+        $dash_logo = $dash_logo ? $dash_logo : get_field("brand_logo", "option");
+
+        if (!empty($dash_logo)) {
+            echo '<style>
+                #toplevel_page_logo_based_menu {
+                    background: url(' . esc_url($dash_logo['url']) . ') no-repeat center/contain;
+                    margin:10px 0 !important;
+                    pointer-events:none;
+                    transform: scale(0.9);
+                }
+                #toplevel_page_logo_based_menu > a,
+                #toplevel_page_logo_based_menu > a > div.wp-menu-image,
+                #toplevel_page_logo_based_menu .wp-menu-name {display: none;}
+            </style>';
+        }
+    }
 }
 add_action('admin_enqueue_scripts', 'admin_logo_style');
 

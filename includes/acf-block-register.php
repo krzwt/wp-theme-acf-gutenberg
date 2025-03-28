@@ -15,7 +15,7 @@ function add_custom_block_category($categories, $post) {
     // Define the custom category
     $custom_category = array(
         'slug'  => 'custom-blocks',
-        'title' => __('Custom Blocks', 'cbiz-wp'),
+        'title' => __('Custom Blocks', 'custom-wp'),
     );
 
     // Insert the custom category after the first existing category

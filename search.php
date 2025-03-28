@@ -5,19 +5,34 @@
  * @since 1.0.0
  */
 get_header();
+
 $search_text = isset($_REQUEST['s']) ? $_REQUEST['s'] : '';
 $search_text = strip_tags( trim($search_text) );
 global $wp_query;
-$pager = (get_query_var('paged')) ? get_query_var('paged') : 1;
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-echo '<main class="main-content search-result-page">';
-    echo '<section class="sr-banner">
+
+echo '<div class="main-content search-result-page">
+	<div class="container">
+		<div class="breadcrumbs">
+			<ul>';
+				if( function_exists('bcn_display') ){
+					bcn_display();
+				}
+			echo '</ul>
+		</div>
+	</div>
+    <section class="sr-banner">
         <div class="container">';
+            // <div class="sec-heading text-center"><h1 class="h2">Showing results for: '.$search_text.'</h1></div>
             echo '<div class="search-form-wrap">';
+                $pager = isset($_REQUEST['pager']) ? $_REQUEST['pager'] : '1';
                 echo '<form method="get" class="search-form" id="filter_form" action="'.esc_url( home_url( '/' ) ).'">
                     <input type="search" value="'.$search_text.'" name="s" placeholder="'.__('Search', 'custom-wp').'" />
                     <button class="icon-search">Search</button>
+                    <input type="hidden" name="pager" id="pager" value="'. $pager.'" >
                 </form>';
+                // <div class="clear-search icon-close"></div>
             echo '</div>
         </div>
     </section>
@@ -25,13 +40,11 @@ echo '<main class="main-content search-result-page">';
 		<div class="container">
 			<div class="sr-result">';
 				if ( have_posts() ) {
-					echo '<div class="sr-topwrap">
-						<span class="sr-value">';
-							printf( esc_html( _n( '%d Results for', '%d Results for', (int) $wp_query->found_posts, 'custom-wp' ) ),
-							(int) $wp_query->found_posts );
-						echo '</span>';
-						echo '<div class="sr-term h4">'.$search_text.'</div>
-					</div>';
+					echo '<span class="sr-value">';
+						printf( esc_html( _n( '%d result for', '%d results for', (int) $wp_query->found_posts, 'twentytwentyone' ) ),
+						(int) $wp_query->found_posts );
+					echo '</span>';
+					echo '<div class="sr-term">'.$search_text.'</div>';
 					while ( have_posts() ) {
 						the_post();
 						$post_id = get_the_ID();
@@ -46,7 +59,11 @@ echo '<main class="main-content search-result-page">';
 						if ($cat_terms && !is_wp_error($cat_terms)) {
 							$cat_terms_string = join(', ', wp_list_pluck($cat_terms, 'name'));
 						}
-
+						// $terms_string = '';
+						// $terms = get_the_terms($post_id, 'post_tag');
+						// if ($terms && !is_wp_error($terms)) {
+						// 	$terms_string = join(', ', wp_list_pluck($terms, 'name'));
+						// }
 						$description = get_the_excerpt($post_id);
 						$length = 230;
 						if (strlen($description) <= $length) {
@@ -54,71 +71,60 @@ echo '<main class="main-content search-result-page">';
 						} else {
 							$description = substr($description, 0, $length) . ' ...';
 						}
-
-						$date = '';
-						$event_display_date  = get_field( 'event_display_date', $post_id  );
-						$pd_display_date	 = get_field( 'pd_display_date', $post_id  );
-						if( get_post_type() == 'event' && $event_display_date ) {
-							$date  = date( 'd F Y', strtotime($event_display_date) );
-						} else {
-							if( $pd_display_date )
-							$date  = date( 'd F Y', strtotime($pd_display_date) );
-						}
-
-						echo '<div class="sr-items search-p-'.$post_id.'">
-							<div class="row align-items-center">';
-								if( $featured_img_url ) {
-									echo '<div class="cell-md-4">
-										<figure class="sr-img">
-											<img src="'.$featured_img_url.'" alt="'.$alt.'">
-										</figure>
-									</div>';
-								}
-								echo '<div class="cell-md-8 sr-content">
-									<div class="sr-desc">';
-										if( $cat_terms_string || $date ) {
-											echo '<div class="sr-wrapper">';
-												if( $cat_terms_string ) {
-													echo '<div class="sr-type">'.$cat_terms_string.'</div>';
-													echo '<span class="space"></span>';
-												}
-												if( $date ) { echo '<div class="sr-date">'.$date.'</div>'; }
-											echo '</div>';
-										}
-										echo '<h4><a href="'.get_permalink( $post_id ).'" target="" class="sr-title">'.get_the_title( $post_id ).'</a></h4>';
-
-										if( $description ) {
-											echo '<p>'.$description.'</p>';
-										}
-									echo '</div>
+						// if( $featured_img_url || $description ) {
+							echo '<div class="sr-items search-p-'.$post_id.'">
+								<div class="row">';
+									if( $featured_img_url ) {
+										echo '<div class="cell-sm-4 pl-xl-30">
+											<figure class="sr-img">
+												<img src="'.$featured_img_url.'" alt="'.$alt.'">
+											</figure>
+										</div>';
+									}
+									echo '<div class="cell-sm-8 sr-content">
+										<div class="sr-desc">';
+											if( $cat_terms_string ) {
+												echo '<div class="sr-type">'.$cat_terms_string.'</div>';
+											}
+											if( $post_id ) {
+												echo '<h4><a href="'.get_permalink( $post_id ).'" target="" class="sr-title">'.get_the_title( $post_id ).'</a></h4>';
+											}
+											if( $description ) {
+												echo '<p>'.$description.'</p>';
+											}
+											// if( $terms_string ) {
+											// 	echo '<div class="sr-tag-wrap">';
+											// 		if( $terms_string ) {
+											// 			echo '<span>'.$terms_string.'</span>';
+											// 		}
+											// 	echo '</div>';
+											// }
+										echo '</div>
+									</div>
 								</div>
-							</div>
-						</div>';
+							</div>';
+						// }
 					} // End the loop.
 					if( $wp_query->max_num_pages > 1 ) {
-						echo '<div class="pagination d-flex justify-content-center ajax-page" id="ajax-pagination">';
-							if ($pager == 1) {
-								echo '<ul class="page-numbers"><li class="prev-nav"><a href="javascript:void(0);" class="prev disabled" disable><i class="icon-pagination-left"></i></a></li></ul>';
-							}
-							echo paginate_links( array(
-								'base'         => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
-								'total'        => $wp_query->max_num_pages,
-								'current'      => max( 1, $pager ),
-								'format'       => '?pager=%#%',
-								'show_all'     => false,
-								'type'         => 'list',
-								'end_size'     => 1,
-								'mid_size'     => 4,
-								'prev_next'    => true,
-								'prev_text'    => sprintf( '<i class="icon-pagination-left"></i>','' ),
-								'next_text'    => sprintf( '<i class="icon-pagination-right"></i>','' ),
-								'add_args'     => false,
-								'add_fragment' => '',
-							) );
-							if ( $wp_query->max_num_pages == $pager ) {
-								echo '<ul class="page-numbers"><li class="next-nav"><a href="javascript:void(0);" class="next  disabled " disable><i class="icon-pagination-right"></i></a></li></ul>';
-							}
-						echo '</div>';
+						$prev_link = get_pagenum_link($paged - 1);
+						$next_link = get_pagenum_link($paged + 1);
+						echo '<div class="pagination d-flex justify-content-center">
+							<ul>';
+								if( $paged== 1 ) {
+									echo '<li><a class="prev disabled" disable>'.__('Prev', 'custom-wp').'</a></li>';
+								} else {
+									echo '<li><a href="'.$prev_link.'" class="prev">'.__('Prev', 'custom-wp').'</a></li>';
+								}
+								echo '<li>'.$paged.'</li>
+								<li>of</li>
+								<li>'.$wp_query->max_num_pages.'</li>';
+								if( $wp_query->max_num_pages == $paged ) {
+									echo '<li><a class="next disabled" disable>'.__('Next', 'custom-wp').'</a></li>';
+								} else {
+									echo '<li><a href="'.$next_link.'" class="next">'.__('Next', 'custom-wp').'</a></li>';
+								}
+							echo '</ul>
+						</div>';
 					}
 				} else {
 					echo '<h5> '.__('No post is available for','custom-wp').': '.$search_text.'</h5>';
@@ -126,6 +132,7 @@ echo '<main class="main-content search-result-page">';
 			echo '</div>
 		</div>
 	</section>
-</main>';
+</div>';
+
 get_footer();
 ?>

@@ -21,6 +21,7 @@ if ( !defined( 'ABSPATH' ) || !function_exists( 'add_filter' ) ) {
     <?php wp_head(); ?>
 </head>
 <body <?php body_class() ?>>
+    <?php echo get_field( 'add_code_in_body_tag', 'options' ); ?>
 	<?php
 	echo '<!-- Start -->
 	<div class="wrapper">

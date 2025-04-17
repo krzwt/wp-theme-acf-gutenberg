@@ -67,7 +67,7 @@ add_action('after_setup_theme', 'gutenberg_assets');
 function gutenberg_assets() {
     // Support for editor styles
     add_theme_support('editor-styles');
-    add_editor_style('gutenberg/style-editor.css');
+    add_editor_style('includes/gutenberg/style-editor.css');
 
     // Enqueue Gutenberg JavaScript
     add_action('enqueue_block_editor_assets', 'enqueue_gutenberg_js');
@@ -76,18 +76,18 @@ function gutenberg_assets() {
 function enqueue_gutenberg_js() {
     wp_enqueue_script(
         'gutenberg-custom-js', // Handle
-        get_template_directory_uri() . '/gutenberg/script-editor.js', // Path to the script-editor.js file
+        get_template_directory_uri() . '/includes/gutenberg/script-editor.js', // Path to the script-editor.js file
         array('wp-blocks', 'wp-element', 'wp-editor'), // Dependencies, if any
-        filemtime(get_template_directory() . '/gutenberg/script-editor.js'), // Version: Uses file modification time
+        filemtime(get_template_directory() . '/includes/gutenberg/script-editor.js'), // Version: Uses file modification time
         true // Enqueue in the footer
     );
 
     // Enqueue Gutenberg CSS
     wp_enqueue_style(
         'gutenberg-custom-css', // Handle
-        get_template_directory_uri() . '/gutenberg/style-editor.css', // Path to the style-editor.css file
+        get_template_directory_uri() . '/includes/gutenberg/style-editor.css', // Path to the style-editor.css file
         array(), // Dependencies, if any
-        filemtime(get_template_directory() . '/gutenberg/style-editor.css') // Version: Uses file modification time
+        filemtime(get_template_directory() . '/includes/gutenberg/style-editor.css') // Version: Uses file modification time
     );
 }
 

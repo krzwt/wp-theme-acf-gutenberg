@@ -1,5 +1,3 @@
- 
-
 document.addEventListener('DOMContentLoaded', function () {
     // Function to initialize the collapse button and block list
     function initializeCollapseButton() {

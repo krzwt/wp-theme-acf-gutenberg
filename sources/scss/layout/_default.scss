@@ -1,0 +1,169 @@
+@use "@scss/abstracts/variables" as *;
+@use "@scss/abstracts/function" as *;
+@use "@scss/abstracts/mixins" as *;
+
+:root {
+	--space-lg: #{rem(100px)};
+	--space-md: #{rem(75px)};
+	--space-sm: #{rem(50px)};
+
+	@include respond-below(xl) {
+		--space-lg: #{rem(50px)};
+		--space-md: #{rem(50px)};
+	}
+
+	@include respond-below(md) {
+		--space-md: #{rem(40px)};
+		--space-sm: #{rem(30px)};
+	}
+}
+
+// CSS for WP-Admin
+#wpadminbar {
+	position: fixed;
+}
+
+.wrapper {
+	position: relative;
+
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	width: 100%;
+	min-height: 100%;
+}
+
+.main-content {
+	flex-grow: 1;
+	width: 100%;
+}
+
+// Section Spacing
+.space {
+	&-lg {
+		padding-top: var(--space-lg);
+		padding-bottom: var(--space-lg);
+
+		&-m {
+			margin-top: var(--space-lg);
+			margin-bottom: var(--space-lg);
+		}
+	}
+
+	&-md {
+		padding-top: var(--space-md);
+		padding-bottom: var(--space-md);
+
+		&-m {
+			margin-top: var(--space-md);
+			margin-bottom: var(--space-md);
+		}
+	}
+
+	&-sm {
+		padding-top: var(--space-sm);
+		padding-bottom: var(--space-sm);
+
+		&-m {
+			margin-top: var(--space-sm);
+			margin-bottom: var(--space-sm);
+		}
+	}
+}
+
+// Text color white
+.bg-dark,
+.bg-secondary,
+.inner-text-white {
+	*:not(.btn) {
+		color: $white;
+	}
+}
+
+/* Pagination */
+.pagination {
+	padding: rem(30px) 0;
+
+	ul {
+		@include flex-center;
+
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	li {
+		position: relative;
+
+		margin: 0 rem(10px);
+		padding: 0;
+
+		font-weight: 700;
+		color: rgba($primary-100, 0.60);
+
+		a {
+			&:hover {
+				color: $secondary-100 !important;
+			}
+		}
+
+		a:not(.prev, .next),
+		span {
+			border: none;
+
+			font-weight: 700;
+			line-height: 1;
+			color: rgba($primary-100, 0.60);
+			text-decoration: none;
+
+			transition: 0.4s ease background-color, 0.4s ease color;
+
+			&.active {
+				border-color: $primary-100;
+			}
+		}
+
+		.prev,
+		.next {
+			cursor: pointer;
+			color: $primary-100;
+			text-decoration: none;
+
+			&::after {
+				content: '';
+
+				position: absolute;
+				inset: -2px -4px;
+
+				border: 1px solid $gray;
+				border-radius: rem(6px);
+
+				visibility: hidden;
+				opacity: 0;
+			}
+
+			&:hover {
+				color: $secondary-100;
+			}
+
+			&:focus {
+				&::after {
+					visibility: visible;
+					opacity: 1;
+					outline: 0;
+				}
+			}
+
+			&.disabled {
+				pointer-events: none;
+				opacity: 0.60;
+			}
+		}
+
+		.current {
+			color: $primary-100;
+		}
+	}
+}

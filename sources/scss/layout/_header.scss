@@ -1,0 +1,158 @@
+@use "@scss/abstracts/variables" as *;
+@use "@scss/abstracts/function" as *;
+@use "@scss/abstracts/mixins" as *;
+
+/* --- header --- */
+.main-header {
+	position: relative;
+	z-index: 999;
+
+	width: 100%;
+	height: auto;
+	padding: 15px 0;
+
+	background-color: $white;
+	box-shadow: 0 0 10px 0 rgba($black, 0.2);
+
+	.brand {
+		display: block;
+		flex: 0 0 auto;
+		width: 64px;
+	}
+
+	/* nav */
+	.nav-menu {
+		flex: 1 1 auto;
+		padding-left: rem(15px);
+	}
+
+	.navigation {
+		display: none;
+		word-break: keep-all;
+
+		@include respond-above('lg') {
+			display: block;
+		}
+		/* stylelint-disable max-nesting-depth */
+		nav {
+			margin-right: 30px;
+			
+			> ul {
+				display: flex;
+			}
+
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+	
+				li {
+					padding: 0;
+					list-style: none;
+
+					a {
+						display: block;
+						padding: 10px 20px;
+						text-decoration: none;
+					}
+
+					&.menu-item-has-children {
+						position: relative;
+
+						>a {
+							padding-right: 40px;
+
+							&::after {
+								content: "";
+
+								position: absolute;
+								top: 13px;
+								right: 20px;
+								transform: rotate(135deg);
+
+								width: 10px;
+								height: 10px;
+								border-top: 1px solid $primary-100;
+								border-right: 1px solid $primary-100;
+
+								transition: border-color 0.3s;
+							}
+						}
+					}
+
+					&:hover {
+						> a {
+							color: $white;
+							background-color: $primary-100;
+
+							&::after {
+								border-color: $white;
+							}
+						}
+
+						>ul {
+							pointer-events: auto;
+							opacity: 1;
+						}
+					}
+				}
+	
+				&.sub-menu {
+					pointer-events: none;
+
+					position: absolute;
+					top: 100%;
+					left: 0;
+
+					min-width: 200px;
+
+					opacity: 0;
+
+					transition: opacity 0.3s;
+
+					.sub-menu {
+						top: 0;
+						left: 100%;
+					}
+
+					li {
+						a {
+							display: block;
+							color: $white;
+							background-color: $primary-100;
+						}
+
+						&.menu-item-has-children {
+							>a {
+								&::after {
+									top: 17px;
+									transform: rotate(45deg);
+									border-color: $white;
+								}
+							}
+						}
+
+						&:hover {
+							> a {
+								color: $primary-100;
+								background-color: $white;
+
+								&::after {
+									border-color: $primary-100;
+								}
+							}
+						}
+						
+						&:not(:last-child) {
+							a {
+								border-bottom: 1px solid rgba($white, 0.3);
+							}
+						}
+					}
+				}
+			}
+		}
+		/* stylelint-enable max-nesting-depth */
+
+	}
+}

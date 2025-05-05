@@ -1,0 +1,43 @@
+#!/bin/sh
+
+echo "🔍 Checking spelling in commit message..."
+
+commit_msg_file=$1
+commit_msg=$(cat "$commit_msg_file")
+
+# ✅ Commit length validation
+min_len=10
+max_len=99
+actual_len=${#commit_msg}
+
+has_error=0
+
+if [ "$actual_len" -lt "$min_len" ]; then
+  echo "🚫 Commit message is too short ($actual_len chars). Must be at least $min_len characters."
+  has_error=1
+fi
+
+if [ "$actual_len" -gt "$max_len" ]; then
+  echo "🚫 Commit message is too long ($actual_len chars). Must be under $max_len characters."
+  has_error=1
+fi
+
+# ✅ Spell check using cspell
+echo "$commit_msg" | npx cspell --languageId plaintext stdin
+
+if [ $? -ne 0 ]; then
+  echo "🚫 Spelling errors found in commit message. Please fix them."
+  has_error=1
+fi
+
+if [ "$has_error" -eq 1 ]; then
+  echo "❌ Commit aborted due to above errors."
+  exit 1
+fi
+
+echo "✅ No spelling mistakes found and message length is valid!"
+echo "🚀 Pushing to remote..."
+
+git push
+
+exit 0

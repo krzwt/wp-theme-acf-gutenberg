@@ -1,0 +1,16 @@
+{
+    "name": "zealplus/theme",
+    "autoload": {
+        "psr-4": {
+            "Zealplus\\Theme\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "zealplus"
+        }
+    ],
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.12"
+    }
+}

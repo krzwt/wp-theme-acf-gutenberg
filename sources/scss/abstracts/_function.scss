@@ -1,0 +1,48 @@
+@use "sass:math";
+
+$base: 16px !default;
+$decimal-value: true !default;
+
+// generate rounded value
+@function round-to($value, $digits: 3) {
+    $multiplier: math.pow(10, $digits);
+
+    @return math.div(math.round($value * $multiplier), $multiplier);
+}
+
+// convert px to rem
+@function rem($target, $context: $base) {
+    $result: math.div($target, $context);
+    
+    @return if($decimal-value, round-to($result, 3), $result) * 1rem;
+}
+
+// aspect-ratio
+@function aspect-ratio($width, $height) {
+    @return math.div($height, $width) * 100%;
+}
+
+// common folder path
+@function assets($filetype, $filename) {
+    @return url("../" + $filetype + "/" + $filename);
+}
+
+// image path
+@function image($filename) {
+    @return assets("images", $filename);
+}
+
+// fonts path
+@function font($filename) {
+    @return assets("fonts", $filename);
+}
+
+// icons path
+@function icon-font($filename) {
+    @return assets("fonts/icons-fonts", $filename);
+}
+
+// letter spacing add in px
+@function ls($val) {
+    @return ($val * 0.001) * 1em;
+}

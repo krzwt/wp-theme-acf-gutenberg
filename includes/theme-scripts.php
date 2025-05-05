@@ -1,34 +1,52 @@
 <?php
+
 /**
-* Load the custom scripts and styles.
+* Load the theme scripts.
 */
 
-if ( !defined( 'ABSPATH' ) ) {
-	header( 'Status: 403 Forbidden' );
-	header( 'HTTP/1.1 403 Forbidden' );
-	exit;
+if (!defined('ABSPATH')) {
+    header('Status: 403 Forbidden');
+    header('HTTP/1.1 403 Forbidden');
+    exit;
 }
 
 /**
- * [action__front_script Function to add script at front side]
- *
+ * Enqueue scripts and styles.
  */
-function action__front_script() {
-    $theme = wp_get_theme();
-    $theme_version = $theme->get( 'Version' );
+function mytheme_scripts()
+{
+    wp_enqueue_style(THEME_PREFIX . '-wp-style', get_stylesheet_uri(), array(), _THEME_VERSION);
 
-    // Register and enqueue style
-    wp_register_style( THEME_PREFIX . '-wp-style', get_template_directory_uri() . '/style.css', array(), $theme_version );
-    wp_enqueue_style( THEME_PREFIX . '-wp-style' );
-    wp_register_style( THEME_PREFIX . '-style', get_template_directory_uri() . '/assets/css/style.min.css', array(), $theme_version );
-    wp_enqueue_style( THEME_PREFIX . '-style' );
+    wp_enqueue_script('jquery');
 
-    if (file_exists(get_stylesheet_directory() . '/assets/js/scripts.js') && is_admin()){
-        wp_register_script( THEME_PREFIX . '-scripts-jquery', get_template_directory_uri() . '/assets/js/scripts.js', array( 'jquery' ), $theme_version, true );
-    }else{
-        wp_register_script( THEME_PREFIX . '-scripts-jquery', get_template_directory_uri() . '/assets/js/scripts.min.js', array( 'jquery' ), $theme_version, true );
+    $manifest_path = get_template_directory() . '/assets/manifest.json';
+    if (file_exists($manifest_path)) {
+        $manifest = json_decode(file_get_contents($manifest_path), true);
+
+        if (isset($manifest['main.css'])) {
+            wp_enqueue_style(THEME_PREFIX . '-style', get_template_directory_uri() . '/assets' . $manifest['main.css'], array(), _THEME_VERSION);
+        }
+
+        if (isset($manifest['main.js'])) {
+            wp_enqueue_script(THEME_PREFIX . '-scripts', get_template_directory_uri() . '/assets' . $manifest['main.js'], array(), _THEME_VERSION, true);
+        }
     }
-    wp_enqueue_script( THEME_PREFIX . '-scripts-jquery' );
 
+    // Enqueue the custom AJAX handling script
+    wp_enqueue_script(THEME_PREFIX . '-ajax-script', get_template_directory_uri() . '/sources/js/modules/ajax-scripts.js', array(), _THEME_VERSION, true);
+
+    // Localize the script to pass AJAX URL and nonce to JavaScript
+    wp_localize_script(
+        THEME_PREFIX . '-ajax-script',
+        'mytheme_ajax_object',
+        array(
+            'ajax_url' => admin_url('admin-ajax.php'), // AJAX handler URL
+            'nonce' => wp_create_nonce('ajax-nonce') // Security nonce
+        )
+    );
+
+    if (is_singular() && comments_open() && get_option('thread_comments')) {
+        wp_enqueue_script('comment-reply');
+    }
 }
-add_action( 'wp_enqueue_scripts', 'action__front_script' );
+add_action('wp_enqueue_scripts', 'mytheme_scripts');

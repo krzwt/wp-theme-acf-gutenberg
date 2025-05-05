@@ -186,7 +186,7 @@ echo '<!-- Content area part -->
     if ( file_exists( get_template_directory() . '/template-part/svg-icon-preview.php' ) ) {
         locate_template( 'template-part/svg-icon-preview.php', true, false );
     }
-        echo '</div>
+    echo '</div>
 </main>';
 
 get_footer();

@@ -1,8 +1,29 @@
-@charset "UTF-8";
-/*
-Theme Name: Custom Theme
+/*!
+Theme Name: MyTheme
 Author: Admin
-Version: 1.1
-Text Domain : custom-wp
-Description: The Custom template website theme.
+Description: MyTheme is a blank canvas for your WordPress project.
+Version: 1.0.0
+Tested up to: 6.7
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: mytheme
+Tags: custom-background, custom-logo, custom-menu, featured-images, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned.
 */
+
+.svg-icons-list .icon-grid {
+	display: grid;
+	grid-template-columns: repeat(8, auto);
+	list-style: none;
+	padding-left: 0;
+	gap: 1rem;
+}
+
+.svg-icons-list .icon-grid li {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

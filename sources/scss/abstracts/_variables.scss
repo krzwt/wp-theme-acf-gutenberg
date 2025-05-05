@@ -1,0 +1,91 @@
+@use "@scss/abstracts/function" as *;
+
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+// Regular ( Open Sans ) font family
+$font-family-base: 'Open Sans', 'Arial', sans-serif !default;
+
+// $font-family-hgroup:  'Open Sans', 'Arial', sans-serif !default;
+$icon-family: "iconfontfamily" !important;
+
+// body contect text size
+$font-size-base: rem(16px) !default; // 16px (Don't change)
+
+// Colors
+$primary-100: #1eb2a6 !default;
+$secondary-100: #ffa34d !default;
+
+// Start with assigning color names to specific hex values.
+$white: #fff !default;
+$black: #000 !default;
+$gray: #dee3e2 !default;
+
+// Body color
+$body-bg: $white !default;
+$body-color: $black !default;
+
+// Heading font Size
+$heading-size: (
+  'h1': rem(50px),
+  'h2': rem(40px),
+  'h3': rem(32px),
+  'h4': rem(25px),
+  'h5': rem(20px),
+  'h6': rem(18px),
+);
+$hgroup-margin-bottom: rem(15px) !default;
+$hgroup-font-family: inherit !default;
+$hgroup-font-weight: 700 !default;
+$hgroup-line-height: 1.1 !default;
+$hgroup-color: $black !default;
+
+// Forms
+$label-color: $black;
+$label-font-weight: 400;
+$label-font-family: $font-family-base;
+$label-font-size: rem(14px);
+$input-bg: $white;
+$input-font-family: $font-family-base;
+$input-font-size: $font-size-base;
+$input-font-weight: 400;
+$input-color: $black;
+$input-color-placeholder: rgba($black,0.5);
+$input-height-base: rem(42px);
+$input-radius: 0;
+$input-border-color: $secondary-100;
+$input-border-color-focus: $secondary-100;
+$textarea-height-base: rem(150px);
+
+// Set assets path
+$img: '../images'; // background-img:url( #{$img}/)
+$fonts: '../fonts';
+
+// Container's maximum width
+$container-width: rem(1170px) !default;
+$gutters: rem(50px);
+$row-gutters: rem(30px);
+
+// Media Query breakpoints.
+$breakpoints: (
+  'sm': 576px, // Mobile Devices
+  'md': 768px, // Mobile Devices
+  'lg': 992px, // Tablet Devices
+  'xl': 1200px, // Laptop Devices
+  'xxl': 1400px // Desktop Devices
+);
+
+// Advance utilities
+$advance-utilities: true;
+
+// Spacing : padding and margin
+$spacing: true;
+$spaceamounts: (30);
+
+// Background and Text color classes(ex: .bg-white and .text-white)
+$bgcolor-map: (
+  'white' : $white,
+  'dark' : $black
+);
+
+/* Note: If need Disable Decimal-value functionilty open function.scss file */

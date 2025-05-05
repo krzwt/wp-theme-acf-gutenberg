@@ -1,0 +1,36 @@
+@use "@scss/abstracts/variables" as *;
+@use "@scss/abstracts/function" as *;
+@use "@scss/abstracts/mixins" as *;
+
+.entry-banner {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .entry-header {
+        position: absolute;
+        inset: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 15px;
+
+        background-color: rgba(0 0 0 / 75%);
+    }
+
+    .entry-title {
+        margin: 0;
+        font-size: 2rem;
+        color: white;
+        text-transform: uppercase;
+    }
+}

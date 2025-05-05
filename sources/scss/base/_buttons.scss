@@ -1,0 +1,149 @@
+@use "@scss/abstracts/variables" as *;
+@use "@scss/abstracts/function" as *;
+@use "@scss/abstracts/mixins" as *;
+
+%btn {
+	--focuc-outline-space: -1px;
+
+	user-select: none;
+
+	position: relative;
+
+	display: inline-block;
+
+	padding: rem(11px) rem(24px);
+	border: none;
+	border-radius: rem(2px);
+
+	font-size: $font-size-base;
+	font-weight: 700;
+	line-height: 1.5;
+	color: $white;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: top;
+
+	background-color: $primary-100;
+
+	transition: background-color 0.3s ease 0s, color 0.3s ease 0s, border-color 0.3s ease 0s;
+
+	@include respond-below(md) {
+		padding: rem(9px) rem(14px);
+	}
+
+	&::before {
+		pointer-events: none;
+		content: "";
+
+		position: absolute;
+		inset: var(--focuc-outline-space);
+
+		border: 1px solid $gray;
+		border-radius: rem(5px);
+
+		visibility: hidden;
+		opacity: 0;
+
+		transition: 0.4s ease;
+	}
+
+	&:hover {
+		cursor: pointer;
+		color: $primary-100;
+		text-decoration: none;
+		background-color: $secondary-100;
+	}
+
+	&:focus {
+		--focuc-outline-space: -4px;
+
+		color: $white;
+		outline: 0;
+
+		&::before {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}
+
+.btn {
+	@extend %btn;
+
+	&-sm {
+		padding: rem(4px) rem(9px);
+		font-size: rem(12px);
+	}
+
+	&-link {
+		user-select: none;
+
+		position: relative;
+
+		border: 0;
+
+		font-size: $font-size-base;
+		font-weight: 700;
+		color: $primary-100;
+		text-decoration: none;
+
+		transition: background-color 0.3s ease 0s, color 0.3s ease 0s, border-color 0.3s ease 0s;
+
+		&::before {
+			pointer-events: none;
+			content: "";
+
+			position: absolute;
+			inset: -4px -8px;
+
+			border: 1px solid $gray;
+			border-radius: rem(20px);
+
+			visibility: hidden;
+			opacity: 0;
+
+			transition: 0.4s ease;
+		}
+
+		&::after {
+			@include icon("c");
+
+			display: inline-flex;
+
+			margin-left: 8px;
+
+			font-size: rem(9px);
+			color: $primary-100;
+
+			transition: 0.4s ease;
+		}
+
+		&:hover {
+			border-color: currentcolor;
+			color: $secondary-100;
+			text-decoration: none;
+
+			&::after {
+				transform: translateX(4px);
+				color: $secondary-100;
+			}
+		}
+
+		&:focus {
+			outline: 0;
+
+			&::before {
+				visibility: visible;
+				opacity: 1;
+			}
+		}
+	}
+}
+
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	@extend %btn;
+
+	appearance: button;
+}

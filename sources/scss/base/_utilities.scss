@@ -1,0 +1,355 @@
+@use "@scss/abstracts/variables" as *;
+@use "@scss/abstracts/function" as *;
+@use "@scss/abstracts/mixins" as *;
+@use "sass:string";
+@use "sass:math";
+
+/**
+ * Main content containers
+ */
+
+%container {
+	--gutter: #{$gutters};
+
+	width: min(100% - var(--gutter) * 2, var(--container-width, 100%));
+	margin-right: auto;
+	margin-left: auto;
+
+	@include respond-below(md) {
+		--gutter: #{rem(20px)};
+	}
+}
+
+.container {
+	--container-width: #{$container-width};
+
+	@extend %container;
+
+	&-fluid {
+		@extend %container;
+	}
+}
+
+[class*="cell-"] {
+	position: relative;
+	width: 100%;
+	padding-right: $row-gutters * 0.5;
+	padding-left: $row-gutters * 0.5;
+}
+
+/* row and column */
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: $row-gutters * -0.5;
+	margin-left: $row-gutters * -0.5;
+
+	&.no-gutters {
+		margin-right: 0;
+		margin-left: 0;
+
+		>[class*="cell-"] {
+			padding-right: 0;
+			padding-left: 0;
+		}
+	}
+}
+
+/* display helpers */
+.d {
+	&-none {
+		display: none;
+	}
+
+	&-block {
+		display: block;
+	}
+
+	&-flex {
+		display: flex;
+		flex-wrap: wrap;
+
+		&-inline {
+			display: inline-flex;
+		}
+
+		img {
+			align-self: center;
+		}
+	}
+}
+
+.flex-nowrap {
+	flex-wrap: nowrap;
+}
+
+/* alignment helpers */
+.align {
+	&-items {
+		&-start {
+			align-items: flex-start;
+		}
+
+		&-center {
+			align-items: center;
+		}
+
+		&-end {
+			align-items: flex-end;
+		}
+	}
+
+	&-content-center {
+		align-content: center;
+	}
+
+	&none {
+		float: none;
+		margin: rem(20px) 0;
+	}
+
+	&center {
+		clear: both;
+		display: block;
+		margin: rem(20px) auto;
+	}
+
+	&left {
+		float: left;
+		margin: 0 rem(20px) rem(20px) 0;
+	}
+
+	&right {
+		float: right;
+		margin: 0 0 rem(20px) rem(20px);
+	}
+}
+
+.justify {
+	&-content {
+		&-start {
+			justify-content: flex-start;
+		}
+
+		&-center {
+			justify-content: center;
+		}
+
+		&-end {
+			justify-content: flex-end;
+		}
+
+		&-between {
+			justify-content: space-between;
+		}
+
+		&-around {
+			justify-content: space-around;
+		}
+
+		&-evenly {
+			justify-content: space-evenly;
+		}
+	}
+}
+
+/* text alignment */
+.text {
+	&-center {
+		text-align: center;
+	}
+
+	&-right {
+		text-align: right;
+	}
+
+	&-left {
+		text-align: left;
+	}
+}
+
+/* background and text color */
+@each $name, $color in $bgcolor-map {
+	.bg-#{$name} {
+		background-color: $color;
+	}
+
+	.text-#{$name} {
+		color: $color;
+	}
+}
+
+/* column structure */
+$grid-columns: 12;
+$sides-y: top, bottom;
+$sides-x: left, right;
+
+@for $i from 1 through $grid-columns {
+	.cell-#{$i} {
+		width: math.percentage(math.div($i, $grid-columns));
+	}
+}
+
+@if $spacing == true {
+	@each $space in $spaceamounts {
+		@each $side in $sides-y {
+
+			.m#{string.slice($side, 0, 1)}-#{$space},
+			.m-#{$space},
+			.my-#{$space} {
+				margin-#{$side}: #{math.div($space, 16)}rem;
+			}
+
+			.p#{string.slice($side, 0, 1)}-#{$space},
+			.p-#{$space},
+			.py-#{$space} {
+				padding-#{$side}: #{math.div($space, 16)}rem;
+			}
+		}
+
+		@each $side in $sides-x {
+
+			.m#{string.slice($side, 0, 1)}-#{$space},
+			.m-#{$space},
+			.mx-#{$space} {
+				margin-#{$side}: #{math.div($space, 16)}rem;
+			}
+
+			.p#{string.slice($side, 0, 1)}-#{$space},
+			.p-#{$space},
+			.px-#{$space} {
+				padding-#{$side}: #{math.div($space, 16)}rem;
+			}
+		}
+	}
+}
+
+/* responsive variants */
+@each $bp-key, $bp in $breakpoints {
+	@include respond-above($bp-key) {
+		@for $i from 1 through $grid-columns {
+			.cell-#{$bp-key}-#{$i} {
+				width: math.percentage(math.div($i, $grid-columns));
+			}
+		}
+
+		@if $spacing == true {
+			@each $space in $spaceamounts {
+				@each $side in $sides-y {
+
+					.m#{string.slice($side, 0, 1)}-#{$bp-key}-#{$space},
+					.m-#{$bp-key}-#{$space},
+					.my-#{$bp-key}-#{$space} {
+						margin-#{$side}: #{math.div($space, 16)}rem;
+					}
+
+					.p#{string.slice($side, 0, 1)}-#{$bp-key}-#{$space},
+					.p-#{$bp-key}-#{$space},
+					.py-#{$bp-key}-#{$space} {
+						padding-#{$side}: #{math.div($space, 16)}rem;
+					}
+				}
+
+				@each $side in $sides-x {
+
+					.m#{string.slice($side, 0, 1)}-#{$bp-key}-#{$space},
+					.m-#{$bp-key}-#{$space},
+					.mx-#{$bp-key}-#{$space} {
+						margin-#{$side}: #{math.div($space, 16)}rem;
+					}
+
+					.p#{string.slice($side, 0, 1)}-#{$bp-key}-#{$space},
+					.p-#{$bp-key}-#{$space},
+					.px-#{$bp-key}-#{$space} {
+						padding-#{$side}: #{math.div($space, 16)}rem;
+					}
+				}
+			}
+		}
+
+		@if $advance-utilities == true {
+			.d-#{$bp-key} {
+				&-none {
+					display: none;
+				}
+
+				&-block {
+					display: block;
+				}
+
+				&-flex {
+					display: flex;
+				}
+			}
+
+			.align-#{$bp-key} {
+				&-items-start {
+					align-items: flex-start;
+				}
+
+				&-items-center {
+					align-items: center;
+				}
+
+				&-items-end {
+					align-items: flex-end;
+				}
+
+				&-content-center {
+					align-content: center;
+				}
+			}
+
+			.justify-#{$bp-key} {
+				&-content-start {
+					justify-content: flex-start;
+				}
+
+				&-content-center {
+					justify-content: center;
+				}
+
+				&-content-end {
+					justify-content: flex-end;
+				}
+
+				&-content-between {
+					justify-content: space-between;
+				}
+
+				&-content-around {
+					justify-content: space-around;
+				}
+
+				&-content-evenly {
+					justify-content: space-evenly;
+				}
+			}
+
+			.text-#{$bp-key} {
+				&-center {
+					text-align: center;
+				}
+
+				&-right {
+					text-align: right;
+				}
+
+				&-left {
+					text-align: left;
+				}
+			}
+		}
+	}
+}
+
+/* WordPress default alignment */
+.alignwide {
+	--container-width: #{$container-width};
+
+	@extend %container;
+}
+
+.alignfull {
+	@extend %container;
+}

@@ -2,7 +2,7 @@
 /**
  * The template for displaying search results pages
  *
- * @since 1.0.0
+ * @package mytheme
  */
 get_header();
 
@@ -28,7 +28,7 @@ echo '<div class="main-content search-result-page">
             echo '<div class="search-form-wrap">';
                 $pager = isset($_REQUEST['pager']) ? $_REQUEST['pager'] : '1';
                 echo '<form method="get" class="search-form" id="filter_form" action="'.esc_url( home_url( '/' ) ).'">
-                    <input type="search" value="'.$search_text.'" name="s" placeholder="'.__('Search', 'custom-wp').'" />
+                    <input type="search" value="'.$search_text.'" name="s" placeholder="'.__('Search', THEME_PREFIX).'" />
                     <button class="icon-search">Search</button>
                     <input type="hidden" name="pager" id="pager" value="'. $pager.'" >
                 </form>';
@@ -41,7 +41,7 @@ echo '<div class="main-content search-result-page">
 			<div class="sr-result">';
 				if ( have_posts() ) {
 					echo '<span class="sr-value">';
-						printf( esc_html( _n( '%d result for', '%d results for', (int) $wp_query->found_posts, 'twentytwentyone' ) ),
+						printf( esc_html( _n( '%d result for', '%d results for', (int) $wp_query->found_posts, THEME_PREFIX ) ),
 						(int) $wp_query->found_posts );
 					echo '</span>';
 					echo '<div class="sr-term">'.$search_text.'</div>';
@@ -111,23 +111,23 @@ echo '<div class="main-content search-result-page">
 						echo '<div class="pagination d-flex justify-content-center">
 							<ul>';
 								if( $paged== 1 ) {
-									echo '<li><a class="prev disabled" disable>'.__('Prev', 'custom-wp').'</a></li>';
+									echo '<li><a class="prev disabled" disable>'.__('Prev', THEME_PREFIX).'</a></li>';
 								} else {
-									echo '<li><a href="'.$prev_link.'" class="prev">'.__('Prev', 'custom-wp').'</a></li>';
+									echo '<li><a href="'.$prev_link.'" class="prev">'.__('Prev', THEME_PREFIX).'</a></li>';
 								}
 								echo '<li>'.$paged.'</li>
 								<li>of</li>
 								<li>'.$wp_query->max_num_pages.'</li>';
 								if( $wp_query->max_num_pages == $paged ) {
-									echo '<li><a class="next disabled" disable>'.__('Next', 'custom-wp').'</a></li>';
+									echo '<li><a class="next disabled" disable>'.__('Next', THEME_PREFIX).'</a></li>';
 								} else {
-									echo '<li><a href="'.$next_link.'" class="next">'.__('Next', 'custom-wp').'</a></li>';
+									echo '<li><a href="'.$next_link.'" class="next">'.__('Next', THEME_PREFIX).'</a></li>';
 								}
 							echo '</ul>
 						</div>';
 					}
 				} else {
-					echo '<h5> '.__('No post is available for','custom-wp').': '.$search_text.'</h5>';
+					echo '<h5> '.__('No post is available for',THEME_PREFIX).': '.$search_text.'</h5>';
 				}
 			echo '</div>
 		</div>

@@ -1,0 +1,281 @@
+@use "@scss/abstracts/variables" as *;
+@use "@scss/abstracts/function" as *;
+@use "@scss/abstracts/mixins" as *;
+
+/**
+ * Basic typography style for copy text
+ */
+
+html {
+    height: 100%;
+
+    @include rem-baseline(16px);
+
+    text-size-adjust: 100%;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+
+    max-width: 100%;
+    height: auto;
+    min-height: 100%;
+
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    font-weight: 500;
+    line-height: 1.5;
+    color: $body-color;
+
+    background-color: $body-bg;
+
+    &.scroll-fixed {
+        overflow: hidden;
+    }
+
+    // @include custom-scroll;
+    @media screen and (-ms-high-contrast: active),
+    (-ms-high-contrast: none) {
+        height: 100%;
+    }
+}
+
+// Heading style
+@each $key, $size in $heading-size {
+    #{$key},
+    .#{$key} {
+        margin-bottom: $hgroup-margin-bottom;
+
+        font-family: $hgroup-font-family;
+        font-size: $size;
+        font-weight: $hgroup-font-weight;
+        line-height: $hgroup-line-height;
+        color: $hgroup-color;
+        word-break: keep-all;
+
+        a {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        span {
+            font-weight: 400;
+        }
+
+        @if $key == "h1" {
+            @include respond-below(xl) {
+                font-size: rem(42px);
+            }
+
+            @include respond-below(md) {
+                font-size: rem(36px);
+            }
+
+        } @else if $key == "h2" {
+            @include respond-below(xl) {
+                font-size: rem(34px);
+            }
+
+            @include respond-below(md) {
+                font-size: rem(29px);
+            }
+
+        } @else if $key == "h3" {
+            @include respond-below(md) {
+                font-size: rem(24px);
+            }
+
+        } @else if $key == "h4" {
+            @include respond-below(md) {
+                font-size: rem(20px);
+            }
+
+        } @else if $key == "h5" {
+            @include respond-below(md) {
+                font-size: rem(18px);
+            }
+
+        } @else if $key == "h6" {
+            @include respond-below(md) {
+                font-size: rem(17px);
+            }
+        }
+    }
+}
+
+p {
+    margin-bottom: rem(20px);
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.eyebrow-text {
+    position: relative;
+
+    display: inline-block;
+
+    margin-bottom: rem(16px);
+    padding-left: rem(10px);
+
+    font-size: rem(14px);
+
+    &::before {
+        content: "";
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 2px;
+        height: 100%;
+
+        background-color: $secondary-100;
+    }
+}
+
+:is(ul, ol) {
+    --ulol-left-padding: #{rem(20px)};
+
+    margin-bottom: rem(15px);
+    padding-left: var(--ulol-left-padding);
+
+    li {
+        padding-top: rem(6px);
+        padding-bottom: rem(6px);
+
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+}
+
+ul {
+    >li {
+        &::marker {
+            font-size: 1.2em;
+            color: $secondary-100;
+        }
+    }
+}
+
+blockquote {
+    position: relative;
+
+    display: block;
+
+    margin-bottom: rem(25px);
+    padding: rem(20px);
+    border-left: rem(4px) solid $primary-100;
+
+    font-size: rem(18px);
+    font-style: italic;
+    line-height: 2;
+    color: $black;
+    text-align: left;
+
+    background-color: $gray;
+
+    /* stylelint-disable no-descending-specificity */
+    p {
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        color: inherit;
+    }
+    /* stylelint-enable no-descending-specificity */
+}
+
+hr {
+    overflow: visible;
+
+    width: 100%;
+    height: 0;
+    margin: rem(30px) auto;
+    border: 0 $black solid;
+    border-top-width: rem(1px);
+}
+
+img {
+    display: inline-block;
+
+    max-width: 100%;
+    height: auto;
+    border: none;
+
+    vertical-align: top;
+
+    &[src$=".svg"] {
+        max-height: 100%;
+    }
+}
+
+picture {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* Link */
+a {
+    color: $primary-100;
+    text-decoration: underline;
+    transition:
+        background-color 0.3s ease 0s,
+        color 0.3s ease 0s;
+
+    &:hover {
+        color: $secondary-100;
+        outline: none;
+    }
+
+    &.tab-outline {
+        outline: 1px solid;
+        outline-offset: rem(3px);
+    }
+}
+
+/* Tables */
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+
+    td {
+        font-weight: normal;
+        text-align: left;
+    }
+}
+
+.table-responsive {
+    overflow-x: auto;
+    display: block;
+
+    width: 100%;
+
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.table-bordered {
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+
+    td,
+    th {
+        padding: rem(10px);
+        border-bottom: rem(1px) solid $gray;
+        vertical-align: bottom;
+    }
+}
+
+/* stylelint-disable selector-class-pattern */
+.fancybox__content {
+    >.carousel__button.is-close {
+        top: rem(-50px, );
+        right: 0;
+    }
+}
+/* stylelint-enable selector-class-pattern */

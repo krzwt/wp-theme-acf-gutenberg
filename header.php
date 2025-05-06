@@ -16,24 +16,26 @@ if (!defined('ABSPATH')) {
 <html <?php language_attributes() ?> class="no-js">
 <head>
     <meta charset="<?php bloginfo('charset') ?>" />
- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
     <!-- <meta name="theme-color" content="#7b0a2e"/> -->
-  <link rel="profile" href="http://gmpg.org/xfn/11" />
+    <link rel="profile" href="http://gmpg.org/xfn/11" />
     <link rel="pingback" href="<?php bloginfo('pingback_url') ?>" />
     <?php echo get_field( 'add_code_in_head', 'options' ); ?>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class() ?>>
 <?php echo get_field( 'add_code_in_body_tag', 'options' ); ?>
- <div class="wrapper">
-        <?php $brand_logo = get_template_directory_uri() . '/assets/images/logo.svg';
+<div class="wrapper">
+        <?php $brand_logo = get_field( 'brand_logo','option' );;
         echo ' <header class="main-header">
             <div class="container d-flex justify-content-between align-items-center flex-nowrap">';
-        if ($brand_logo) {
-            echo'<a href="' . home_url('/') . '" class="brand">
-						<img src="' . $brand_logo . '" alt="' . get_bloginfo('name') . '">
-					</a>';
-        }
+            if($brand_logo){
+                $logo_width = ($brand_logo['width'] > 1) ? $brand_logo['width'] : '151';
+                $logo_height = ($brand_logo['height'] > 1) ? $brand_logo['height'] : '32';
+                echo '<a href="' . home_url('/') . '" class="brand">
+                    <img src="' . $brand_logo['url'] . '" data-smush-lazy="false" alt="' . get_bloginfo('name') . '" width="' . $logo_width . '" height="' . $logo_height . '" class="no-lazy" loading="eager">
+                </a>';
+            }
                 echo '<div class="nav-menu d-flex justify-content-end align-items-center flex-nowrap">';
         if (has_nav_menu('menu-1')) {
             echo'<div class="navigation">

@@ -23,7 +23,7 @@ Use it to make something cool, have fun, and share what you've learned.
 }
 
 .svg-icons-list .icon-grid li {
-	display: flex;
+	display: grid;
 	align-items: center;
-	justify-content: center;
+	/* justify-content: center; */
 }

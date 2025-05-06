@@ -183,8 +183,8 @@ echo '<!-- Content area part -->
             <li><a class="next page-numbers" href="#">Next</a></li>
         </ul>
     </div>';
-    if ( file_exists( get_template_directory() . '/template-part/svg-icon-preview.php' ) ) {
-        locate_template( 'template-part/svg-icon-preview.php', true, false );
+    if ( file_exists( get_template_directory() . '/template-parts/svg-icon-preview.php' ) ) {
+        locate_template( 'template-parts/svg-icon-preview.php', true, false );
     }
     echo '</div>
 </main>';

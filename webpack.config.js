@@ -30,9 +30,10 @@ const plugins = [
         publicPath: '/',     // Ensure proper public path
         basePath: '',        // No double prefix
     }),
+    // Uncomment PurgeCSS if you want to enable it
     // new PurgeCSSPlugin({
     //     paths: globSync(`${dirname}/**/*.php`),
-    //     safelist: [], // Remove all safelisting temporarily
+    //     safelist: [], // Adjust safelist if needed
     //     defaultExtractor: (content) => content.match(/[\w-]+/g) || [],
     //     verbose: true,
     // }),
@@ -79,23 +80,47 @@ export default {
             },
             {
                 test: /\.(scss|css)$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '../',
+                        },
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            url: true,
+                        },
+                    },
+                    'sass-loader',
+                ],
             },
             {
                 test: /\.(png|jpe?g|gif|svg|webp|avif)$/i,
-                type: 'asset/resources',
+                type: 'asset/resource',
                 generator: {
-                    filename: 'images/[name][ext][query]',
+                    filename: 'images/[name][ext][query]', // ✅ images output to /assets/images/
+                },
+            },
+            // Optional: fonts
+            {
+                test: /\.(woff(2)?|ttf|eot)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'fonts/[name][ext][query]',
                 },
             },
         ],
     },
 
     resolve: {
-        extensions: ['.scss','.js'],
+        extensions: ['.scss', '.js'],
         alias: {
             '@scss': path.resolve(dirname, 'sources/scss'),
             '@js': path.resolve(dirname, 'sources/js'),
+            '@img': path.resolve(dirname, 'sources/images'),
         },
     },
 
@@ -117,7 +142,7 @@ export default {
     },
 
     target: ['web', 'es2023'],
-  
+
     devtool: 'cheap-module-source-map',
 
     watch: isDev,

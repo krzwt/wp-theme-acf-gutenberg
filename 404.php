@@ -3,7 +3,7 @@
 /**
  * The template for displaying 404
  *
- * @package mytheme
+ * @package ThemeName
  */
 
 if (!defined('ABSPATH')) {
@@ -27,22 +27,22 @@ echo '<main class="main-content">
 					echo '<h1>'.$title.'</h1>';
 				} else {
 					echo'<h1 class="page-title">';
-						echo '<span>'. __( 'Oops! That page can&rsquo;t be found.',THEME_PREFIX) .'</span>';
+						echo '<span>'. __( 'Oops! That page can&rsquo;t be found.','textdomain' ) .'</span>';
 					echo '</h1>';
 				}
 				if( $description ) {
 					echo '<div class="description p-large">'.$description.'</div>';
 				} else {
 					echo '<div class="description">';
-						echo '<p>'.__('The Page You Requested Cannot Be Found. The Page You Are Looking For Might Have Been Removed, Had Its Name Changed, Or Is Temporarily Unavailable.',THEME_PREFIX).'</p>';
+						echo '<p>'.__('The Page You Requested Cannot Be Found. The Page You Are Looking For Might Have Been Removed, Had Its Name Changed, Or Is Temporarily Unavailable.','textdomain' ).'</p>';
 						echo'</br>';
-						echo '<h5>'.__('Please try the following:',THEME_PREFIX).'</h5>';
+						echo '<h5>'.__('Please try the following:','textdomain' ).'</h5>';
 						echo '<ul>';
-							echo '<li>'.__('If you typed the page address in the Address bar, make sure that it is spelled correctly.',THEME_PREFIX).'</li>';
-							echo '<li>'.__('Open the ',THEME_PREFIX).'<a href="'.get_home_url().'">'.__('Home Page</a> and look for links to the information you want.',THEME_PREFIX).'</li>';
-							echo '<li>'.__('Use the navigation bar on the left or top to find the link you are looking for.',THEME_PREFIX).'</li>
+							echo '<li>'.__('If you typed the page address in the Address bar, make sure that it is spelled correctly.','textdomain' ).'</li>';
+							echo '<li>'.__('Open the ','textdomain' ).'<a href="'.get_home_url().'">'.__('Home Page</a> and look for links to the information you want.','textdomain' ).'</li>';
+							echo '<li>'.__('Use the navigation bar on the left or top to find the link you are looking for.','textdomain' ).'</li>
 						</ul>';
-						echo '<a href="'.get_home_url().'" class="btn mt-15">'.__('Back To Home',THEME_PREFIX).'</a>
+						echo '<a href="'.get_home_url().'" class="btn mt-15">'.__( 'Back To Home','textdomain' ).'</a>
 					</div>';
 				}
 			echo '</div>

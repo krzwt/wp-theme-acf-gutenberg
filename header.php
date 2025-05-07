@@ -3,7 +3,7 @@
 /**
  * The template for displaying site header
  *
- * @package mytheme
+ * @package ThemeName
  */
 
 if (!defined('ABSPATH')) {

@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
  */
 
 if ( function_exists( 'acf_register_block' ) ) {
-	add_action( 'acf/init', 'block_acf_init' );
+	add_action( 'acf/init', 'register_acf_blocks' );
 	add_filter( 'block_categories_all', 'add_custom_block_category', 10, 2 );
 	add_filter( 'block_editor_settings_all', 'sort_blocks_alphabetically', 10, 2 );
 }
@@ -30,7 +30,7 @@ if ( function_exists( 'acf_register_block' ) ) {
 function add_custom_block_category( $categories, $post ) {
 	$custom_category = array(
 		'slug'  => 'custom-blocks',
-		'title' => __( 'Custom Blocks', 'custom-wp' ),
+		'title' => __( 'Custom Blocks', 'textdomain' ),
 	);
 
 	// Insert custom category after the first existing category.
@@ -70,7 +70,6 @@ function sort_blocks_alphabetically( $editor_settings, $post ) {
 	return $editor_settings;
 }
 
-
 function register_acf_blocks()
 {
     $separate_folder = get_template_directory_uri() . '/assets/js/modules/'; // Corrected the typo
@@ -84,12 +83,12 @@ function register_acf_blocks()
          */
         acf_register_block_type(array(
             'name'              => 'wysiwyg',
-            'title'             => __('WYSIWYG'),
-            'description'       => __('A dynamically rendered ACF block.'),
+            'title'             => __('WYSIWYG','textdomain'),
+            'description'       => __('A dynamically rendered ACF block.','textdomain'),
             'render_callback'   => 'theme_acf_block_render_callback',
             'category'          => 'custom-blocks',
             'icon'              => 'admin-comments',
-            'keywords'          => array('wysiwyg', 'acf'),
+            'keywords'          => array('wysiwyg', 'text', 'editor'),
             'supports'          => array(
                 'align' => true
             ),

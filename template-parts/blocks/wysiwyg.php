@@ -2,13 +2,13 @@
 /**
  * WYSIWYG Section Block.
  *
- * @package mytheme
+ * @package ThemeName
  */
+
+// render_acf_block_preview( $block );
 
 $wys_heading     = get_field( 'wys_heading' );
 $wys_description = get_field( 'wys_description' );
-
-// render_acf_block_preview( $block );
 
 if ( $wys_heading || $wys_description ) {
     echo '<!-- WYSIWYG -->';

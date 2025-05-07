@@ -1,9 +1,9 @@
 <?php
 
 /**
- * mytheme functions and definitions
+ * ThemeName functions and definitions
  *
- * @package mytheme
+ * @package ThemeName
  */
 
 if (!defined('ABSPATH')) {
@@ -19,7 +19,7 @@ if (! defined('_THEME_VERSION')) {
 /**
  * Define the default contant that will be used throughout your theme.
  */
-define('THEME_PREFIX', 'mytheme');
+define('THEME_PREFIX', 'theme-prefix');
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -67,11 +67,12 @@ function mytheme_setup()
      * This theme uses wp_nav_menu() in one location.
      */
     register_nav_menus(array(
-            'menu-1' => esc_html__('Primary', THEME_PREFIX),
-            'menu-2' => esc_html__('Secondary', THEME_PREFIX),
+            'menu-1' => esc_html__('Primary', 'textdomain' ),
+            'menu-2' => esc_html__('Secondary', 'textdomain' ),
         ));
 }
 add_action('after_setup_theme', 'mytheme_setup');
+
 /**
  * Enqueue scripts and styles.
  */
@@ -88,6 +89,10 @@ require get_template_directory() . '/includes/theme-filter.php';
  * Add the Custom functions for this theme.
  */
 require get_template_directory() . '/includes/theme-functions.php';
+/**
+ * Implement security-related functions for this theme.
+ */
+require get_template_directory() . '/includes/theme-security.php';
 /**
  * Register the Custom ACF Block for this theme.
  */

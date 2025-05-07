@@ -113,7 +113,7 @@ function acf_link($link, $link_class = '')
 
     // Extract link values.
     $link_url    = esc_url($link['url']);
-    $link_title  = ! empty($link['title']) ? esc_html($link['title']) : __('Read More', THEME_PREFIX); // Fallback title.
+    $link_title  = ! empty($link['title']) ? esc_html($link['title']) : __('Read More', 'textdomain' ); // Fallback title.
     $link_target = ! empty($link['target']) ? '_blank' : '_self';
     $rel_attr    = ('_blank' === $link_target) ? 'noopener noreferrer' : 'nofollow';
     $link_class  = esc_attr($link_class ? $link_class : 'btn');
@@ -192,7 +192,7 @@ function mytheme_archive_post()
     ob_start();
 
     // Display search heading and search form
-    echo "<div>" . esc_html__('Search', THEME_PREFIX) . "</div>";
+    echo "<div>" . esc_html__('Search', 'textdomain' ) . "</div>";
 
     get_search_form();
 
@@ -205,10 +205,10 @@ function mytheme_archive_post()
 
     // Display category dropdown if categories exist
     if (!empty($categories)) {
-        echo "<div>" . esc_html__('Filter by Category', THEME_PREFIX) . "</div>";
+        echo "<div>" . esc_html__('Filter by Category', 'textdomain' ) . "</div>";
         echo "
         <select name='postcategory' id='postcategory'>
-            <option value=''>" . esc_html__('Select Category', THEME_PREFIX) . "</option>";
+            <option value=''>" . esc_html__('Select Category', 'textdomain' ) . "</option>";
         foreach ($categories as $category) {
             echo '<option value="' . esc_attr($category->slug) . '">' . esc_html($category->name) . '</option>';
         }
@@ -217,7 +217,7 @@ function mytheme_archive_post()
 
     // Loading indicator for AJAX requests
     echo "
-    <div class='loading' style='display:none;'>" . esc_html__('Loading...', THEME_PREFIX) . "</div>
+    <div class='loading' style='display:none;'>" . esc_html__('Loading...', 'textdomain' ) . "</div>
     <div class='blog-listing'>";
 
     // Check if there are posts available
@@ -249,7 +249,7 @@ function mytheme_archive_post()
         echo "</div>"; // End of pagination
     else :
         // Display message if no posts are found
-        echo "<p>" . esc_html__('No posts found.', THEME_PREFIX) . "</p>";
+        echo "<p>" . esc_html__('No posts found.', 'textdomain' ) . "</p>";
     endif;
 
     echo "</div>"; // End of blog listing container
@@ -380,3 +380,24 @@ function get_vimeo_id( $link ) {
     // Make sure the remaining part is numeric
     return is_numeric( $video_id ) ? $video_id : null;
 }
+
+/**
+ * Render ACF block preview image in the editor with lazy loading and alt text.
+ *
+ * This function displays a preview image for an ACF block in the WordPress admin
+ * editor when a preview image URL is provided in the block's data. It includes
+ * lazy loading for better performance and an alt text for accessibility.
+ *
+ * @param array $block Block settings and attributes.
+ * @return void
+ */
+function render_acf_block_preview( $block ) {
+	if ( isset( $block['data']['preview_image'] ) && is_admin() ) {
+		$preview_image_url = esc_url( $block['data']['preview_image'] );
+		$alt_text = isset( $block['data']['preview_image_alt'] ) ? esc_attr( $block['data']['preview_image_alt'] ) : 'Preview Image'; // Default alt text if not set
+
+		echo '<img src="' . $preview_image_url . '" alt="' . $alt_text . '" loading="lazy" style="width: 100%; height: auto; object-fit: cover;" />';
+		return;
+	}
+}
+

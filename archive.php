@@ -3,7 +3,7 @@
 /**
  * The template for displaying archive pages.
  *
- * @package mytheme
+ * @package ThemeName
  */
 
 if (!defined('ABSPATH')) {

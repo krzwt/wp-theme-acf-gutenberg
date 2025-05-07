@@ -3,7 +3,7 @@
 /**
  * The template for displaying blog page.
  *
- * @package mytheme
+ * @package ThemeName
  */
 
 if (!defined('ABSPATH')) {
@@ -15,18 +15,18 @@ if (!defined('ABSPATH')) {
 get_header();
 ?>
 
- <main id="primary" class="main-content">
+<main class="main-content">
 
-    <?php
-    if (have_posts(  )):
-        while (have_posts()) :
-            the_post();
-            the_content();
-        endwhile;
-    endif;
-    ?>
+	<?php
+	if ( have_posts() ) :
+		while ( have_posts() ) :
+			the_post();
+			the_content();
+		endwhile;
+	endif;
+	?>
 
-    </main><!-- #main -->
+</main><!-- main -->
 
 <?php
 get_footer();

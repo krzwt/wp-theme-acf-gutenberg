@@ -3,7 +3,7 @@
 /**
  * The template for displaying all single posts
  *
- * @package mytheme
+ * @package ThemeName
  */
 
 if (!defined('ABSPATH')) {
@@ -23,7 +23,7 @@ get_header();
                 the_post();
 
                 the_content(sprintf(wp_kses(/* translators: %s: Name of current post. Only visible to screen readers */
-                    __('Continue reading<span class="screen-reader-text"> "%s"</span>', THEME_PREFIX),
+                    __('Continue reading<span class="screen-reader-text"> "%s"</span>', 'textdomain' ),
                     array(
                         'span' => array(
                             'class' => array(),

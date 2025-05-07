@@ -3,7 +3,7 @@
 /**
  * The template for displaying site footer
  *
- * @package mytheme
+ * @package ThemeName
  */
 
 ?>
